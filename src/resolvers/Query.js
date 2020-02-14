@@ -17,7 +17,7 @@ const Query = {
     },
     posts(parent, args, {db}, info) {
       if (!args.query) {
-        return db.Errorposts;
+        return db.posts;
       } else {
         return db.posts.filter(post => {
           return post.title.toLowerCase().includes(args.query.toLowerCase());

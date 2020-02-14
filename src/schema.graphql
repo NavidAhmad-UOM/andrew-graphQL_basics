@@ -11,10 +11,18 @@ type Query {
           updateUser(id:ID!,data:UpdateUserInput!):User!,
           createPost(data:CreatePostInput):Post!,
           updatePost(id:ID!,data:UpdatePostInput!):Post!,
-          createComment(data:CreateCommentInput):Comment!,
+          createComment(data:CreateCommentInput!):Comment!,
           updateComment(id:ID!,data:UpdateCommentInput!):Comment!,
           deletePost(id:ID!):Post!,
           deleteComment(id:ID!):Comment!
+      }
+
+      type Subscription {
+          count:Int!,
+          comment(postId:ID!):Comment!,
+          createPost:PostSubscrptionPayload!,
+          createComment:CommentSubscrptionPayload!,
+          
       }
 
       input CreateUserInput {
@@ -72,3 +80,14 @@ type Query {
           author:User!,
           post:Post
       }
+
+    #   postSubscription payload is to add additional property to make it meaningful that what happend durin operation 
+    # update or delte ,creat
+    type PostSubscrptionPayload {
+        mutation:String!,
+        data:Post!
+    }
+    type CommentSubscrptionPayload {
+        mutation:String!,
+        data:Comment!
+    }
