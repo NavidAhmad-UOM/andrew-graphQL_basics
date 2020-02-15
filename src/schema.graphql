@@ -81,13 +81,18 @@ type Query {
           post:Post
       }
 
+      enum MutationType{
+          CREATED,
+          UPDATED,
+          DELETED
+      }
     #   postSubscription payload is to add additional property to make it meaningful that what happend durin operation 
     # update or delte ,creat
     type PostSubscrptionPayload {
-        mutation:String!,
+        mutation:MutationType!,
         data:Post!
     }
     type CommentSubscrptionPayload {
-        mutation:String!,
+        mutation:MutationType!,
         data:Comment!
     }
